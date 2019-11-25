@@ -10,7 +10,7 @@ namespace userAuthentication.Controllers {
             // WebLogin webLogin = new WebLogin("Server=localhost;Database=dotnetcoreSamples;Uid=cfrederi;Pwd=Dexterismypetsname;SslMode=none;", HttpContext);
             // webLogin.addUserAndPassword("Chris", "password");
             return View();
-        }
+        } 
 
         public IActionResult Submit(string myUsername, string myPassword) {
             WebLogin webLogin = new WebLogin("Server=localhost;Database=dotnetcoreSamples;Uid=cfrederi;Pwd=Dexterismypetsname;SslMode=none;", HttpContext);

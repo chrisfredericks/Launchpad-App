@@ -4,19 +4,23 @@
     ViewData["Title"] = "Home Page";
 }
 
+<span><h5>Administration</h5><a href="@Url.Action("Index", "Login")">Logout</a></span>
 <div class="container">
   <div class="row">
-    <div class="col-sm">
-      <h2>@Model.categories[0].category<h2>
-    </div>
-    <div class="col-sm">
-      <h2>@Model.categories[1].category<h2>
-    </div>
-    <div class="col-sm">
-      <h2>@Model.categories[2].category<h2>
-    </div>
-    <div class="col-sm">
-      <h2>@Model.categories[3].category<h2>
-    </div>
+    @foreach (var item in Model.categories) {
+      <div class="col-sm">
+        <h2>@item.category</h2>
+        @foreach (var link in Model.sortedLinks().Where(n => n.categoryId == item.Id)) {
+          <div>
+            <img src="https://www.google.com/s2/favicons?domain_url=@link.href" alt="@link.label"> 
+            <a href="@link.href">@link.label</a> 
+          </div>            
+        }
+      </div>
+    }
   </div>
 </div>
+
+@section scripts {
+    <script>startAutoLogout();</script>
+}

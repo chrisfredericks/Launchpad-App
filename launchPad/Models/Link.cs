@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace launchPad.Models
 {
@@ -6,11 +7,7 @@ namespace launchPad.Models
 
         // ------------------------------------------------------ get/set methods
         [Key]
-        public int linkID {get;set;}
-        [Required]
-        [MaxLength(40)]
-        [Display(Name="Category Name")]
-        public string category {get;set;}
+        public int Id {get;set;}
         [Required]
         [MaxLength(100)]
         [Display(Name="Link Name")]
@@ -20,6 +17,8 @@ namespace launchPad.Models
         [MaxLength(100)]
         [Display(Name="Link Address")]
         public string href {get;set;}
-        public string pinned {get;set;}
+        public int pinned {get;set;}
+        [ForeignKey("Categories")]
+        public int categoryId {get;set;}
     }
 }

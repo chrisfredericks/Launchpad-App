@@ -1,4 +1,12 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function startAutoLogout() {
+    window.setTimeout(function() {
+        // session has expired!
+        document.location = "/";
 
-// Write your JavaScript code.
+    }, 1200000);
+    
+    window.setTimeout(function() {
+        // session has expired!
+        document.getElementById("lblExpire").innerHTML = "Warning : Session is about to expire!";
+    }, 1080000);
+}

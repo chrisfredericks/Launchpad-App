@@ -33,6 +33,8 @@ namespace launchPad
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<launchPad.Models.LinkManager>();
             
             // ---------- added for using session variables
             services.AddDistributedMemoryCache();

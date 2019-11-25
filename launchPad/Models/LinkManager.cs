@@ -7,29 +7,23 @@ using System.Linq;
 namespace launchPad.Models {
 
     public class LinkManager : DbContext {
-
-        private List<launchPad.Models.Link> _categories;
         
         public LinkManager() {
-            _categories = new List<Link>();
         }
 
         public DbSet<Link> links {get; set;}
-
-        public List<Link> categories {
-            get {
-                return _categories;
-            }
-        }
+        public DbSet<Category> categories {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseMySQL(Connection.CONNECTION_STRING);
         }
 
-        public List<Link> getCategories() {
-            _categories = links.GroupBy (c => c.category).Select (y => y.First ()).ToList();
-            // var _categories = links.Select(c => c.category).Distinct().ToList();
-            return _categories;
+        public Link[] sortedLinks() {
+            var query = links.OrderBy(c => c.categoryId).ThenByDescending(c => c.pinned).ThenBy(c => c.label);
+            return query.ToArray();
+            /*foreach(var line in query) {
+                Console.WriteLine("cid: " + line.categoryId + " p: " + line.pinned + " l:" + line.label);
+            } */
         }
     }
 }
