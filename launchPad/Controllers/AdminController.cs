@@ -27,13 +27,30 @@ namespace launchPad.Controllers
         }
 
 
-        public IActionResult Add() {
+        public IActionResult Add(int selectedCategory) {
             if (HttpContext.Session.GetString("auth") != "true") {
                 return RedirectToAction("Index", "Login");
             } 
-            Console.WriteLine("\n\n*****categoryId: " + linkManager.selectedCategory);
+            Console.WriteLine("\n\n*****categoryId: " + selectedCategory);
+            Category cat = linkManager.getCategory(selectedCategory);
+            Console.WriteLine("\n\n*****category: " + cat.category);
+            ViewBag.catId = selectedCategory;
+            ViewBag.catName = cat.category; 
             Link link = new Link();
             return View(link);
+        }
+
+        [HttpPost]
+        public IActionResult AddSubmit(Link link) {
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            // if (!ModelState.IsValid) return RedirectToAction("Start");
+
+            linkManager.Add(link);
+            linkManager.SaveChanges();
+
+            return RedirectToAction("Start", linkManager);
         }
     }
 }

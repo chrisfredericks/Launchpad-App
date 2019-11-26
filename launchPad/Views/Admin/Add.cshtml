@@ -4,13 +4,27 @@
     <div class="col">
         <h4>Add Customer</h4>
         <div style="margin-bottom:10px">Enter data for new customer:</div>
+        <h3>Category: @ViewBag.catName</h3>
         
         <form method="post">
             
             <div class="form-group">
+                <label>Label</label>
+                <input type="text" asp-for="label" class="form-control" maxlength="100" />
+                <span asp-validation-for="label" class="text-danger" />
+            </div>            
+            <div class="form-group">
                 <label>href</label>
                 <input type="text" asp-for="href" class="form-control" maxlength="100" />
                 <span asp-validation-for="href" class="text-danger" />
+            </div>            
+            <div class="form-group">
+                <label>Pinned</label>
+                <input type="checkbox" asp-for="pinned" onclick="$(this).val(this.checked ? 1 : 0)"/> Pinned to Top
+            </div>
+            
+            <div class="form-group">
+                <input type="hidden" asp-for="categoryId" value="@ViewBag.catId" />
             </div>
 
             

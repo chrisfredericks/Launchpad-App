@@ -9,7 +9,6 @@ namespace launchPad.Models {
     public class LinkManager : DbContext {
 
         private Link[] query;
-        public int selectedCategory {get; set;}
         
         public LinkManager() {
         }
@@ -23,8 +22,13 @@ namespace launchPad.Models {
 
         public Link[] sortedLinks() {
             query = links.OrderBy(c => c.categoryId).ThenByDescending(c => c.pinned).ThenBy(c => c.label).ToArray();
-
             return query;
+        }
+
+        public Category getCategory(int catId) {
+            Category cat = categories.FirstOrDefault(c => c.Id == catId);
+            Console.WriteLine("\n\n*****category in Model: " + cat.category);
+            return cat;
         }
     }
 }

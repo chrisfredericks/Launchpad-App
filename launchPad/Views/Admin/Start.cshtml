@@ -24,10 +24,11 @@
                 <h3>@item.category</h3>
               </div>          
               <div class="pl-2 pb-3">
-                <button id=btnAdd type="submit" asp-controller="Admin" asp-action="Add" class="btn btn-warning" asp-for="selectedCategory" value="@item.Id">
+                <button id=btnAdd type="submit" asp-controller="Admin" asp-action="Add" class="btn btn-warning" name="selectedCategory" value="@item.Id">
                     <i class="fa fa-plus"></i>
                 </button>
-              </div> 
+              </div>
+              <input type="hidden" name="catName" value="@item.category" />
               <div class="pl-2 pb-3">
                 <button id=btnDelete type="submit" asp-controller="Admin" asp-action="UpdateCategory" class="btn btn-warning" name="deleteFile" value="@item">
                     <i class="fa fa-edit"></i>
@@ -36,7 +37,7 @@
             </div>
           </form>
         
-        @{int count = Model.links.Where(n => n.categoryId == item.Id).Count(a => a.pinned == 1);
+        @{int count = Model.links.Where(n => n.categoryId == item.Id).Count(a => a.pinned == "1");
           int i = 0;
         }
         @foreach (var link in Model.sortedLinks().Where(n => n.categoryId == item.Id)) {

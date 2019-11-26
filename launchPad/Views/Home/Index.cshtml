@@ -7,7 +7,7 @@
     @foreach (var item in Model.categories) {
       <div class="col-sm">
         <h3>@item.category</h3>
-        @{int count = Model.links.Where(n => n.categoryId == item.Id).Count(a => a.pinned == 1);
+        @{int count = Model.links.Where(n => n.categoryId == item.Id).Count(a => a.pinned == "1");
           int i = 0;
         }
         @foreach (var link in Model.sortedLinks().Where(n => n.categoryId == item.Id)) {

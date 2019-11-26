@@ -17,7 +17,7 @@ namespace launchPad.Models
         [MaxLength(100)]
         [Display(Name="Link Address")]
         public string href {get;set;}
-        public int pinned {get;set;}
+        public string pinned {get;set;}
         [ForeignKey("Categories")]
         public int categoryId {get;set;}
     }
