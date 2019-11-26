@@ -1,20 +1,26 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using System.Linq;
+@model launchPad.Models.LinkManager;
 
+<h1>_launchPad.</h1>
 <div class="container">
   <div class="row">
-    <div class="col-sm">
-        One of 4 columms
-    </div>
-    <div class="col-sm">
-      One of 4 columns
-    </div>
-    <div class="col-sm">
-      One of 4 columns
-    </div>
-    <div class="col-sm">
-      One of 4 columns
-    </div>
+    @foreach (var item in Model.categories) {
+      <div class="col-sm">
+        <h3>@item.category</h3>
+        @{int count = Model.links.Where(n => n.categoryId == item.Id).Count(a => a.pinned == 1);
+          int i = 0;
+        }
+        @foreach (var link in Model.sortedLinks().Where(n => n.categoryId == item.Id)) {
+          i++;
+          <div>
+            <img src="https://www.google.com/s2/favicons?domain_url=@link.href" alt="@link.label" class="pr-1"> 
+            <a href="@link.href" target="_blank">@link.label</a> 
+          </div>
+          if ((count == i)  && (count > 0)) {
+            <p>-----------------------------</p>
+          }       
+        }
+      </div>
+    }
   </div>
 </div>

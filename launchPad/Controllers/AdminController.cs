@@ -25,5 +25,15 @@ namespace launchPad.Controllers
             } 
             return View(linkManager);
         }
+
+
+        public IActionResult Add() {
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            Console.WriteLine("\n\n*****categoryId: " + linkManager.selectedCategory);
+            Link link = new Link();
+            return View(link);
+        }
     }
 }

@@ -7,6 +7,9 @@ using System.Linq;
 namespace launchPad.Models {
 
     public class LinkManager : DbContext {
+
+        private Link[] query;
+        public int selectedCategory {get; set;}
         
         public LinkManager() {
         }
@@ -19,11 +22,9 @@ namespace launchPad.Models {
         }
 
         public Link[] sortedLinks() {
-            var query = links.OrderBy(c => c.categoryId).ThenByDescending(c => c.pinned).ThenBy(c => c.label);
-            return query.ToArray();
-            /*foreach(var line in query) {
-                Console.WriteLine("cid: " + line.categoryId + " p: " + line.pinned + " l:" + line.label);
-            } */
+            query = links.OrderBy(c => c.categoryId).ThenByDescending(c => c.pinned).ThenBy(c => c.label).ToArray();
+
+            return query;
         }
     }
 }

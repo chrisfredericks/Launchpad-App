@@ -1,20 +1,68 @@
-﻿@model launchPad.Models.LinkManager;
+﻿@using System.Linq;
+@model launchPad.Models.LinkManager;
 
-@{
-    ViewData["Title"] = "Home Page";
-}
+<div class="row">
+    <div class="pr-3">
+        <h1>_launchPad.</h1>
+    </div>
+    <div class="pt-3 pr-3 pl-3">
+        <h5>Administration</h5>
+    </div>
+    <div class="pt-3 pl-3">
+        <h5><a href="@Url.Action("Index", "Home")">Logout</a></h5>
+    </div>
+</div>
 
-<span><h5>Administration</h5><a href="@Url.Action("Index", "Login")">Logout</a></span>
 <div class="container">
   <div class="row">
     @foreach (var item in Model.categories) {
       <div class="col-sm">
-        <h2>@item.category</h2>
+        
+          <form>
+            <div class="row">
+              <div>
+                <h3>@item.category</h3>
+              </div>          
+              <div class="pl-2 pb-3">
+                <button id=btnAdd type="submit" asp-controller="Admin" asp-action="Add" class="btn btn-warning" asp-for="selectedCategory" value="@item.Id">
+                    <i class="fa fa-plus"></i>
+                </button>
+              </div> 
+              <div class="pl-2 pb-3">
+                <button id=btnDelete type="submit" asp-controller="Admin" asp-action="UpdateCategory" class="btn btn-warning" name="deleteFile" value="@item">
+                    <i class="fa fa-edit"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        
+        @{int count = Model.links.Where(n => n.categoryId == item.Id).Count(a => a.pinned == 1);
+          int i = 0;
+        }
         @foreach (var link in Model.sortedLinks().Where(n => n.categoryId == item.Id)) {
-          <div>
-            <img src="https://www.google.com/s2/favicons?domain_url=@link.href" alt="@link.label"> 
-            <a href="@link.href">@link.label</a> 
-          </div>            
+          i++;
+
+          <form>
+            <div id="adminButtons" class="row">
+              <div class="pr-2 pb-1">
+                <button id=btnUpdate type="submit" asp-controller="Admin" asp-action="UpdateLink" class="btn btn-warning" name="deleteFile" value="@item">
+                    <i class="fa fa-edit fa-sm"></i>
+                </button>
+              </div> 
+              <div class="pr-2 pb-1">
+                <button id=btnDelete type="submit" asp-controller="Admin" asp-action="Delete" class="btn btn-warning" name="deleteFile" value="@item">
+                    <i class="fa fa-trash fa-sm"></i>
+                </button>
+              </div>
+              <div>
+                <img src="https://www.google.com/s2/favicons?domain_url=@link.href" alt="@link.label" class="pr-1"> 
+                <a href="@link.href" target="_blank">@link.label</a> 
+              </div>
+            </div>
+          </form> 
+          if ((count == i)  && (count > 0)) {
+            <p>-----------------------------</p>
+          }     
         }
       </div>
     }
