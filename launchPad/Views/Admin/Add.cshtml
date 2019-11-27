@@ -1,10 +1,23 @@
 ﻿@model launchPad.Models.Link
 
+<div class="row">
+    <div class="pr-3">
+        <h1>_launchPad.</h1>
+    </div>
+    <div class="pt-3 pr-3 pl-3">
+        <h5>Administration</h5>
+    </div>
+    <div class="pt-3 pl-3">
+        <h5><a href="@Url.Action("Index", "Home")">Logout</a></h5>
+    </div>
+</div>
+
 <div class="row my-2">
     <div class="col">
-        <h4>Add Customer</h4>
-        <div style="margin-bottom:10px">Enter data for new customer:</div>
-        <h3>Category: @ViewBag.catName</h3>
+        <h4>Add Link</h4>
+        <div style="margin-bottom:10px">Enter data for new link:</div>
+        <p>Category:</p> 
+        <h3>@ViewBag.catName</h3>
         
         <form method="post">
             
@@ -19,7 +32,7 @@
                 <span asp-validation-for="href" class="text-danger" />
             </div>            
             <div class="form-group">
-                <label>Pinned</label>
+                <label>Pinned</label><br>
                 <input type="checkbox" asp-for="pinned" onclick="$(this).val(this.checked ? 1 : 0)"/> Pinned to Top
             </div>
             
@@ -30,7 +43,7 @@
             
             <div class="form-group">
                 <input type="submit" asp-controller="Admin" asp-action="AddSubmit" class="btn btn-warning" Text="Add" />
-                <a asp-controller="Admin" asp-action="Index"><input type="button" class="btn btn-warning" value="Cancel" /></a>
+                <a asp-controller="Admin" asp-action="Start"><input type="button" class="btn btn-warning" value="Cancel" /></a>
             </div>
         </form>
 

@@ -2961,6 +2961,11 @@
   "RootNamespace": "launchPad",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\Asus\\Desktop\\Web-App-Project-III\\launchPad\\Views\\Admin\\UpdateCategory.cshtml",
+      "TargetPath": "Views\\Admin\\UpdateCategory.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Asus\\Desktop\\Web-App-Project-III\\launchPad\\Views\\Shared\\_CookieConsentPartial.cshtml",
       "TargetPath": "Views\\Shared\\_CookieConsentPartial.cshtml",
       "FileKind": "mvc"
@@ -2988,6 +2993,11 @@
     {
       "FilePath": "c:\\Users\\Asus\\Desktop\\Web-App-Project-III\\launchPad\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Asus\\Desktop\\Web-App-Project-III\\launchPad\\Views\\Admin\\Delete.cshtml",
+      "TargetPath": "Views\\Admin\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {

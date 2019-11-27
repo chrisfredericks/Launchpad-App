@@ -30,5 +30,9 @@ namespace launchPad.Models {
             Console.WriteLine("\n\n*****category in Model: " + cat.category);
             return cat;
         }
+
+        public Category populateEditCategory(int Id) {
+            return categories.FirstOrDefault(c => c.Id == Id);
+        }
     }
 }

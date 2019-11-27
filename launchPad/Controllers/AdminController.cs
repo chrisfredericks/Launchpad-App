@@ -27,14 +27,14 @@ namespace launchPad.Controllers
         }
 
 
-        public IActionResult Add(int selectedCategory) {
+        public IActionResult Add(int selectedCatId) {
             if (HttpContext.Session.GetString("auth") != "true") {
                 return RedirectToAction("Index", "Login");
             } 
-            Console.WriteLine("\n\n*****categoryId: " + selectedCategory);
-            Category cat = linkManager.getCategory(selectedCategory);
+            Console.WriteLine("\n\n*****categoryId: " + selectedCatId);
+            Category cat = linkManager.getCategory(selectedCatId);
             Console.WriteLine("\n\n*****category: " + cat.category);
-            ViewBag.catId = selectedCategory;
+            ViewBag.catId = selectedCatId;
             ViewBag.catName = cat.category; 
             Link link = new Link();
             return View(link);
@@ -45,11 +45,26 @@ namespace launchPad.Controllers
             if (HttpContext.Session.GetString("auth") != "true") {
                 return RedirectToAction("Index", "Login");
             } 
-            // if (!ModelState.IsValid) return RedirectToAction("Start");
+            if (!ModelState.IsValid) return RedirectToAction("Start", linkManager);
 
             linkManager.Add(link);
             linkManager.SaveChanges();
 
+            return RedirectToAction("Start", linkManager);
+        }
+
+        public IActionResult UpdateCategory(int selectedCatId) {
+            Category cat = new Category();
+            cat = linkManager.populateEditCategory(selectedCatId);
+            return View(cat);
+        }
+        
+        [HttpPost]
+        public IActionResult UpdateSubmit(Category cat) {
+
+            linkManager.Update(cat);
+            linkManager.SaveChanges();
+ 
             return RedirectToAction("Start", linkManager);
         }
     }

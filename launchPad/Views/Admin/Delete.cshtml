@@ -1,0 +1,33 @@
+@model launchPad.Models.Link
+
+<div class="row">
+    <div class="pr-3">
+        <h1>_launchPad.</h1>
+    </div>
+    <div class="pt-3 pr-3 pl-3">
+        <h5>Administration</h5>
+    </div>
+    <div class="pt-3 pl-3">
+        <h5><a href="@Url.Action("Index", "Home")">Logout</a></h5>
+    </div>
+</div>
+@*
+<div class="row" style="margin-bottom:20px;">
+    <div class="col-sm-12">
+        <h4>Delete Customer</h4>
+        <div style="margin-bottom:10px">Select the customer you wish to delete:</div>
+        
+        <form method="post">
+
+            <div class="form-group">            
+                <select id="lstCustomers" asp-for="customerID" asp-items='ViewBag.selectList' class="btn btn-secondary form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" asp-controller="Home" asp-action="DeleteSubmit" class="btn btn-warning" value="Delete" />
+                <input type="submit" asp-controller="Home" asp-action="Index" class="btn btn-warning" value="Cancel" />
+            </div>
+        </form>
+
+    </div>
+</div>*@
