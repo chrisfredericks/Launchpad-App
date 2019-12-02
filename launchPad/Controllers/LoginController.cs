@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using userAuthentication.Models;
 
+
 namespace userAuthentication.Controllers {
 
     public class LoginController : Controller {
 
         public IActionResult Index() {
-            // WebLogin webLogin = new WebLogin("Server=localhost;Database=dotnetcoreSamples;Uid=cfrederi;Pwd=Dexterismypetsname;SslMode=none;", HttpContext);
-            // webLogin.addUserAndPassword("Chris", "password");
             return View();
         } 
 
@@ -20,7 +19,7 @@ namespace userAuthentication.Controllers {
             // do I have access?
             if (webLogin.unlock()) {
                 //access granted
-                return RedirectToAction("Start","Admin");
+                return RedirectToAction("Index","Admin");
             } else {
                 // access denied
                 ViewData["feedback"] = "Incorrect login. Please try again...";
@@ -28,6 +27,11 @@ namespace userAuthentication.Controllers {
             
             return View("Index");
         }
+
+        public IActionResult Logout() {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        } 
 
     }
 }

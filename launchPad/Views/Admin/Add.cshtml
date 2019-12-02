@@ -8,7 +8,7 @@
         <h5>Administration</h5>
     </div>
     <div class="pt-3 pl-3">
-        <h5><a href="@Url.Action("Index", "Home")">Logout</a></h5>
+        <h5><a href="@Url.Action("Logout", "Login")">Logout</a></h5>
     </div>
 </div>
 
@@ -49,3 +49,7 @@
 
     </div>
 </div>
+
+@section scripts {
+    <script>startAutoLogout();</script>
+}

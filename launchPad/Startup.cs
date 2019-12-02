@@ -40,7 +40,7 @@ namespace launchPad
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
             });
             // --------------------------------------------
@@ -72,7 +72,7 @@ namespace launchPad
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
