@@ -24,15 +24,14 @@
                 <h3>@item.category</h3>
               </div>          
               <div class="pl-2 pb-3">
-                <a href="/Admin/Add/@item.Id">asdfas</a>
-                <!-- <button id=btnAdd type="submit" asp-controller="Admin" asp-action="Add" class="btn btn-warning" name="selectedCatId" value="@item.Id">
-                    <i class="fa fa-plus"></i>
-                </button> -->
+                <a href="/Admin/Add/@item.Id">
+                      <i class="fa fa-plus fa-2x btn-warning"></i>
+                </a>
               </div>
               <input type="hidden" name="catName" value="@item.category" />
               <div class="pl-2 pb-3">
                 <button id=btnDelete type="submit" asp-controller="Admin" asp-action="UpdateCategory" class="btn btn-warning" name="selectedCatId" value="@item.Id">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-edit fa-lg"></i>
                 </button>
               </div>
             </div>

@@ -1,4 +1,12 @@
-﻿#adminButtons button {
+﻿.fa-plus {
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+#adminButtons button {
   padding: .3rem .3rem;
   font-size: .75rem;
   line-height: .5; 
@@ -7,6 +15,7 @@
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
