@@ -31,3 +31,4 @@ C:\Users\Asus\Desktop\Web-App-Project-III\launchPad\obj\Debug\netcoreapp2.2\Razo
 C:\Users\Asus\Desktop\Web-App-Project-III\launchPad\obj\Debug\netcoreapp2.2\Razor\Views\Admin\Delete.g.cshtml.cs
 C:\Users\Asus\Desktop\Web-App-Project-III\launchPad\obj\Debug\netcoreapp2.2\Razor\Views\Admin\UpdateCategory.g.cshtml.cs
 C:\Users\Asus\Desktop\Web-App-Project-III\launchPad\obj\Debug\netcoreapp2.2\Razor\Views\Admin\Index.g.cshtml.cs
+C:\Users\Asus\Desktop\Web-App-Project-III\launchPad\obj\Debug\netcoreapp2.2\Razor\Views\Admin\UpdateLink.g.cshtml.cs

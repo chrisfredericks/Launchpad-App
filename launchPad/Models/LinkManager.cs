@@ -25,14 +25,27 @@ namespace launchPad.Models {
             return query;
         }
 
+        public List<Category> getList() {
+            // using LINQ methods to query data an return as a list
+            return categories.OrderBy(c => c.category).ToList();
+        }
+
         public Category getCategory(int catId) {
             Category cat = categories.FirstOrDefault(c => c.Id == catId);
             Console.WriteLine("\n\n*****category in Model: " + cat.category);
             return cat;
         }
 
+        public Link populateDeleteLink(int Id) {
+            return links.FirstOrDefault(c => c.Id == Id);
+        }
+
         public Category populateEditCategory(int Id) {
             return categories.FirstOrDefault(c => c.Id == Id);
+        }
+
+        public Link populateEditLink(int Id) {
+            return links.FirstOrDefault(c => c.Id == Id);
         }
     }
 }

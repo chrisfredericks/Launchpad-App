@@ -16,23 +16,25 @@
 <div class="container">
   <div class="row">
     @foreach (var item in Model.categories) {
-      <div class="col-sm">
+      <div id="category" class="col-sm">
         
           <form>
             <div class="row">
               <div>
-                <h3>@item.category</h3>
+                <h4>@item.category</h4>
               </div>          
-              <div class="pl-2 pb-3">
-                <a href="/Admin/Add/@item.Id">
-                      <i class="fa fa-plus fa-2x btn-warning"></i>
-                </a>
-              </div>
-              <input type="hidden" name="catName" value="@item.category" />
-              <div class="pl-2 pb-3">
-                <button id=btnDelete type="submit" asp-controller="Admin" asp-action="UpdateCategory" class="btn btn-warning" name="selectedCatId" value="@item.Id">
-                    <i class="fa fa-edit fa-lg"></i>
-                </button>
+              <div class="row">
+                <div class="pl-2 pb-3">
+                  <a href="/Admin/Add/@item.Id">
+                        <i id="plus" class="fa fa-plus fa-2x btn-warning"></i>
+                  </a>
+                </div>
+                <input type="hidden" name="catName" value="@item.category" />
+                <div class="pl-2 pb-3">
+                  <button id=btnEdit type="submit" asp-controller="Admin" asp-action="UpdateCategory" class="btn btn-warning" name="selectedCatId" value="@item.Id">
+                      <i class="fa fa-pencil fa-lg"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -46,23 +48,23 @@
           <form>
             <div id="adminButtons" class="row">
               <div class="pr-2 pb-1">
-                <button id=btnUpdate type="submit" asp-controller="Admin" asp-action="UpdateLink" class="btn btn-warning" name="deleteFile" value="@item">
+                <button id=btnUpdate type="submit" asp-controller="Admin" asp-action="UpdateLink" class="btn btn-warning" name="selectedLinkId" value="@link.Id">
                     <i class="fa fa-edit fa-sm"></i>
                 </button>
               </div> 
               <div class="pr-2 pb-1">
-                <button id=btnDelete type="submit" asp-controller="Admin" asp-action="Delete" class="btn btn-warning" name="deleteFile" value="@item">
+                <button id=btnDelete type="submit" asp-controller="Admin" asp-action="Delete" class="btn btn-warning" name="delSelectedLink" value="@link.Id">
                     <i class="fa fa-trash fa-sm"></i>
                 </button>
               </div>
               <div>
                 <img src="https://www.google.com/s2/favicons?domain_url=@link.href" alt="@link.label" class="pr-1"> 
-                <a href="@link.href" target="_blank">@link.label</a> 
+                <a class="text-body" href="@link.href" target="_blank">@link.label</a> 
               </div>
             </div>
           </form> 
           if ((count == i)  && (count > 0)) {
-            <p>-----------------------------</p>
+            <hr>
           }     
         }
       </div>

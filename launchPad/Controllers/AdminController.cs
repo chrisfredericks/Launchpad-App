@@ -21,20 +21,16 @@ namespace launchPad.Controllers
         public IActionResult Index() { 
             // add this on top of every action method that needs user authentication
             if (HttpContext.Session.GetString("auth") != "true") {
-                Console.WriteLine("\n\n Log out???? \n\n");
                 return RedirectToAction("Index", "Login");
             } 
             return View(linkManager);
         }
 
-
         public IActionResult Add(int id) {
             if (HttpContext.Session.GetString("auth") != "true") {
                 return RedirectToAction("Index", "Login");
             } 
-            Console.WriteLine("\n\n*****categoryId: " + id);
             Category cat = linkManager.getCategory(id);
-            Console.WriteLine("\n\n*****category: " + cat.category);
             ViewBag.catId = id;
             ViewBag.catName = cat.category; 
             Link link = new Link();
@@ -43,10 +39,10 @@ namespace launchPad.Controllers
 
         [HttpPost]
         public IActionResult AddSubmit(Link link) {
-            // if (HttpContext.Session.GetString("auth") != "true") {
-            //     return RedirectToAction("Index", "Login");
-            // } 
-            // if (!ModelState.IsValid) return RedirectToAction("Index", linkManager);
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            if (!ModelState.IsValid) return RedirectToAction("Index", linkManager);
 
             linkManager.Add(link);
             linkManager.SaveChanges();
@@ -55,6 +51,9 @@ namespace launchPad.Controllers
         }
 
         public IActionResult UpdateCategory(int selectedCatId) {
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
             Category cat = new Category();
             cat = linkManager.populateEditCategory(selectedCatId);
             return View(cat);
@@ -62,11 +61,69 @@ namespace launchPad.Controllers
         
         [HttpPost]
         public IActionResult UpdateSubmit(Category cat) {
-
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            if (!ModelState.IsValid) return RedirectToAction("Index", linkManager); 
             linkManager.Update(cat);
             linkManager.SaveChanges();
  
-            return RedirectToAction("Index", linkManager);
+            return RedirectToAction("Index", linkManager); 
+        }
+
+        public IActionResult UpdateLink(int selectedLinkId) {
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            Link link = new Link();
+            // save the SelectList object in the view bag for use on the view
+            List<Category> categories= linkManager.getList();
+            ViewBag.selectList = new SelectList(categories, "Id", "category");
+            link = linkManager.populateEditLink(selectedLinkId);
+
+            return View(link);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateLinkSubmit(Link link) {
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            if (link.pinned == null) {
+                link.pinned = "0";
+            } else {
+                link.pinned = "1";
+            } 
+            if (!ModelState.IsValid) return RedirectToAction("Index", linkManager);
+
+            linkManager.Update(link);
+            linkManager.SaveChanges();
+ 
+            return RedirectToAction("Index", linkManager); 
+        }
+        
+        public IActionResult Delete(int delSelectedLink) {
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            Link link = new Link();
+            link = linkManager.populateDeleteLink(delSelectedLink);
+
+            return View(link);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSubmit(int delSelectedLink) {
+            if (HttpContext.Session.GetString("auth") != "true") {
+                return RedirectToAction("Index", "Login");
+            } 
+            Link link = new Link();
+            link = linkManager.populateDeleteLink(delSelectedLink);
+
+            linkManager.Remove(link);
+            linkManager.SaveChanges();
+
+            return RedirectToAction("index");
         }
     }
 }

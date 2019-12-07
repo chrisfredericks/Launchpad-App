@@ -5,8 +5,8 @@
 <div class="container">
   <div class="row">
     @foreach (var item in Model.categories) {
-      <div class="col-sm">
-        <h3>@item.category</h3>
+      <div id="category" class="col-sm">
+        <h4>@item.category</h4>
         @{int count = Model.links.Where(n => n.categoryId == item.Id).Count(a => a.pinned == "1");
           int i = 0;
         }
@@ -17,7 +17,7 @@
             <a href="@link.href" target="_blank">@link.label</a> 
           </div>
           if ((count == i)  && (count > 0)) {
-            <p>-----------------------------</p>
+            <hr>
           }       
         }
       </div>

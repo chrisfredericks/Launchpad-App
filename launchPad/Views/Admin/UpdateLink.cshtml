@@ -14,12 +14,15 @@
 
 <div class="row my-2">
     <div class="col">
-        <h3>Add Link.</h3>
-        <div style="margin-bottom:10px">Enter data for new link:</div>
-        <p>Category:</p> 
-        <h5 class="text-muted border bg-light rounded p-2">@ViewBag.catName</h5>
+        <h3>Edit Link.</h3>
+        <div style="margin-bottom:10px">Edit the link data below:</div>
+        <p>Category:</p>
+
         
         <form method="post">
+            <div class="form-group">
+                <select id="lstCustomers" asp-for="categoryId" asp-items='ViewBag.selectList' class="btn btn-secondary form-control"></select>
+            </div>
             
             <div class="form-group">
                 <label>Label</label>
@@ -33,7 +36,25 @@
             </div>            
             <div class="form-group">
                 <label>Pinned</label><br>
-                <input type="checkbox" asp-for="pinned" onclick="$(this).val(this.checked ? 1 : 0)"/> Pinned to Top
+                @if (@Model.pinned == "1") {
+                    <div class="row">
+                        <div>
+                            <input type="checkbox" name="pinned" onclick="$(this).val(this.checked ? 1 : 0)" checked/>
+                        </div>
+                        <div>
+                            <p>&nbsp;&nbsp;Pin to top</p>
+                        </div>
+                    </div>
+                } else {
+                    <div class="row">
+                        <div>
+                            <input type="checkbox" name="pinned" onclick="$(this).val(this.checked ? 1 : 0)"/>
+                        </div>
+                        <div>
+                            <p>&nbsp;&nbsp;Pin to top</p>
+                        </div>
+                    </div>
+                }
             </div>
             
             <div class="form-group">
@@ -42,9 +63,10 @@
 
             
             <div class="form-group">
-                <input type="submit" asp-controller="Admin" asp-action="AddSubmit" class="btn btn-warning" Text="Add" />
+                <input type="submit" asp-controller="Admin" asp-action="UpdateLinkSubmit" class="btn btn-warning" Text="Change" />
                 <a asp-controller="Admin" asp-action="Index"><input type="button" class="btn btn-warning" value="Cancel" /></a>
             </div>
+            <input type="hidden" asp-for="Id" />
         </form>
 
     </div>
