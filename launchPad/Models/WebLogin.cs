@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using MySql.Data.MySqlClient;
 
-namespace userAuthentication.Models {
+namespace launchPad.Models {
 
 	public class WebLogin {
 		// private variables
@@ -72,7 +72,7 @@ namespace userAuthentication.Models {
 		try {
 			dbConnection = new MySqlConnection(connectionString);
 			dbConnection.Open();
-			dbCommand = new MySqlCommand("SELECT password,salt from tblLogin WHERE username=?username", dbConnection);
+			dbCommand = new MySqlCommand("SELECT password,salt from tbllogin WHERE username=?username", dbConnection);
 			dbCommand.Parameters.AddWithValue("?username", _username);
 			dbReader = dbCommand.ExecuteReader();
 
@@ -101,40 +101,7 @@ namespace userAuthentication.Models {
 		return _access;
 	}
 
-		public void addUserAndPassword(string username, string password) {
-				string addSalt = getSalt();
-				string addHashed = getHashed(password, addSalt);
-				Console.WriteLine("\n\n*********Hashed: " + addHashed + "   *********Salt: " + addSalt +"\n\n");
 
-            try {
-                // open connection
-                dbConnection = new MySqlConnection(connectionString);
-				dbConnection.Open();               
-				string sqlString = "SELECT Count(*) FROM tblLogin WHERE username = ?username";
-				dbCommand = new MySqlCommand(sqlString,dbConnection);
-				dbCommand.Parameters.AddWithValue("?username", username);                
-				count = Convert.ToInt32(dbCommand.ExecuteScalar());
-
-				// only delete the image if there are no other quotes associated with the image
-				if (count == 0) {
-					sqlString = "INSERT INTO tblLogin " +
-					"(username,password,salt) VALUES " +
-					"(?username,?addHashed,?addSalt)";
-
-					// Populate Command Object
-					dbCommand = new MySqlCommand(sqlString,dbConnection);
-					dbCommand.Parameters.AddWithValue("?username", username);
-					dbCommand.Parameters.AddWithValue("?addHashed", addHashed);
-					dbCommand.Parameters.AddWithValue("?addSalt", addSalt);
-					dbCommand.ExecuteNonQuery();
-
-					dbCommand.Parameters.Clear();				
-				}
-
-            } finally {
-                dbConnection.Close();
-            }
-		}
 
 
 

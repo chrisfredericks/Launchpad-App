@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using launchPad.Models;
-using userAuthentication.Models;
 
 namespace launchPad.Controllers
 {

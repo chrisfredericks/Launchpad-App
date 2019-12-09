@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using userAuthentication.Models;
+using launchPad.Models;
+using System.Web;
 
 
-namespace userAuthentication.Controllers {
+namespace launchPad.Controllers {
 
     public class LoginController : Controller {
 
@@ -11,21 +12,28 @@ namespace userAuthentication.Controllers {
             return View();
         } 
 
+[HttpPost]
         public IActionResult Submit(string myUsername, string myPassword) {
-            WebLogin webLogin = new WebLogin("Server=localhost;Database=dotnetcoreSamples;Uid=cfrederi;Pwd=Dexterismypetsname;SslMode=none;", HttpContext);
-            webLogin.username = myUsername;
-            webLogin.password = myPassword;
+            try{
 
-            // do I have access?
-            if (webLogin.unlock()) {
-                //access granted
-                return RedirectToAction("Index","Admin");
-            } else {
-                // access denied
-                ViewData["feedback"] = "Incorrect login. Please try again...";
+                WebLogin webLogin = new WebLogin("Server=localhost;Database=dotnetcoreSamples;Uid=cfrederi;Pwd=Dexterismypetsname;SslMode=none;", HttpContext);
+                webLogin.username = myUsername;
+                webLogin.password = myPassword;
+
+                // do I have access?
+                if (webLogin.unlock()) {
+                    //access granted
+                    return RedirectToAction("Index","Admin");
+                } else {
+                    // access denied
+                    ViewData["feedback"] = "Incorrect login. Please try again...";
+                }
+                
+                return View("Index");
+            } catch (Exception e){
+                return Content(e.Message);
             }
             
-            return View("Index");
         }
 
         public IActionResult Logout() {
