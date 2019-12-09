@@ -42,7 +42,13 @@ namespace launchPad.Controllers
             if (HttpContext.Session.GetString("auth") != "true") {
                 return RedirectToAction("Index", "Login");
             } 
-            if (!ModelState.IsValid) return RedirectToAction("Index", linkManager);
+            if (!ModelState.IsValid) return RedirectToAction("Index", linkManager); 
+            
+            if (link.pinned == null) {
+                link.pinned = "0";
+            } else {
+                link.pinned = "1";
+            } 
 
             linkManager.Add(link);
             linkManager.SaveChanges();
