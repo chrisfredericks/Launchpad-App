@@ -12292,23 +12292,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cfrederi\\.nuget\\packages\\": {},
+    "C:\\Users\\Asus\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cfrederi\\Desktop\\Web-App-Project-III\\launchPad\\launchPad.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Second-Year-Semester-1\\Web-App-Project-III\\launchPad\\launchPad.csproj",
       "projectName": "launchPad",
-      "projectPath": "C:\\Users\\cfrederi\\Desktop\\Web-App-Project-III\\launchPad\\launchPad.csproj",
-      "packagesPath": "C:\\Users\\cfrederi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cfrederi\\Desktop\\Web-App-Project-III\\launchPad\\obj\\",
+      "projectPath": "C:\\Users\\Asus\\Desktop\\Second-Year-Semester-1\\Web-App-Project-III\\launchPad\\launchPad.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus\\Desktop\\Second-Year-Semester-1\\Web-App-Project-III\\launchPad\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\cfrederi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"

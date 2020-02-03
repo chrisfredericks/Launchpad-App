@@ -16,7 +16,7 @@ namespace launchPad.Controllers {
         public IActionResult Submit(string myUsername, string myPassword) {
             try{
 
-                WebLogin webLogin = new WebLogin("Server=localhost;Database=dotnetcoreSamples;Uid=cfrederi;Pwd=Dexterismypetsname;SslMode=none;", HttpContext);
+                WebLogin webLogin = new WebLogin("Server=localhost;Database=dotnetcoreSamples;Uid=root;Pwd=;SslMode=none;", HttpContext);
                 webLogin.username = myUsername;
                 webLogin.password = myPassword;
 
